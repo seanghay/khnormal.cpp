@@ -90,13 +90,14 @@ static const std::vector<std::vector<std::string>> FIXTURES = {
   {"ឧិ","ឧិ"},
   {"ឧ៌","ឧ៌"},
   {"ឧ៍","ឧ៍"},
+  {"abcសីុabc","abcស៊ីabc"},
 };
 
 int main() {
   for (auto &p: FIXTURES) {
     std::string left = p[0];
     std::string right = p[1];
-    left = khnormal(left);
+    left = khnormal::normalize(left);
     
     if (0 != left.compare(right)) {
       std::cout << left  << " => " << right << std::endl;

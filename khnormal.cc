@@ -16,6 +16,8 @@
 #define CAT_COENG 3u
 #define CAT_ZFCOENG 4u
 
+namespace khnormal {
+
 typedef struct {
   uint8_t type;
   utf8::utfchar32_t code;
@@ -78,7 +80,7 @@ static const re2::RE2 PATTERN_S1(
     "\\x{17A5}-\\x{17B3}])?[\\x{17C1}-\\x{17C5}]?)\\x{17BB}([\\x{17B7}-\\x{"
     "17BA}\\x{17BE}\\x{17BF}\\x{17DD}]|\\x{17B6}\\x{17C6}|\\x{17D0})");
 
-std::string khnormal(std::string_view v) {
+std::string khnormalize(std::string_view v) {
   std::vector<GraphemeItem> values;
   values.reserve(v.size());
 
@@ -165,7 +167,7 @@ std::string normalize(std::string_view text) {
 
   while (re2::RE2::FindAndConsume(&text, PATTERN_KHMER, &m1, &m2)) {
     if (!m1.empty()) {
-      result.append(khnormal(m1));
+      result.append(khnormalize(m1));
       continue;
     }
 
@@ -174,3 +176,5 @@ std::string normalize(std::string_view text) {
 
   return result;
 }
+
+} // namespace khnormal
