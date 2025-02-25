@@ -6,7 +6,10 @@
 #include "khnormal.hpp"
 #include "re2/re2.h"
 #include "utf8.h"
-#include <iostream>
+#include <algorithm>
+#include <string>
+#include <string_view>
+#include <vector>
 
 #define CAT_OTHER 0u
 #define CAT_BASE 1u
@@ -77,18 +80,17 @@ static const re2::RE2 PATTERN_S1(
 
 std::string khnormal(std::string_view v) {
   std::vector<GraphemeItem> values;
+  values.reserve(v.size());
 
   auto it = v.begin();
   auto end = v.end();
   int i = 0;
   while (it != end) {
     utf8::utfchar32_t c = utf8::next(it, end);
-    uint8_t t;
+    uint8_t t = CAT_OTHER;
 
     if (0x1780u <= c && c <= 0x17ddu) {
       t = CATS[c - 0x1780u];
-    } else {
-      t = CAT_OTHER;
     }
 
     std::string text;
@@ -120,6 +122,8 @@ std::string khnormal(std::string_view v) {
     }
 
     std::vector<uint32_t> newIndices;
+    newIndices.reserve(j - i);
+
     for (uint32_t x = 0; x < j - i; x++) {
       newIndices.push_back(x + i);
     }
