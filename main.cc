@@ -92,6 +92,7 @@ static const std::vector<std::vector<std::string>> FIXTURES = {
   {"ឧ៍","ឧ៍"},
   {"abcសីុabc","abcស៊ីabc"},
   {"abcមានមនុស្សម្នាក់បានទៅសីុ ហើយក៏បានabc","abcមានមនុស្សម្នាក់បានទៅស៊ី ហើយក៏បានabc"},
+  {"abcសីុមានមនុស្សម្នាក់បានទៅសីុ ហើយក៏បានabc","abcស៊ីមានមនុស្សម្នាក់បានទៅស៊ី ហើយក៏បានabc"},
 };
 
 int main() {
