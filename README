@@ -1,0 +1,14 @@
+Khmer encoding normalization implementation in C++.
+
+heavily inspired from [https://github.com/sillsdev/khmer-character-specification]
+
+Test cases are from [https://github.com/sillsdev/khmer-normalizer]
+
+Build:
+
+  git clone --recurisve https://github.com/seanghay/khnormal.cpp.git
+  
+  mkdir build/
+  cd build/
+  cmake ..
+  make -j4
