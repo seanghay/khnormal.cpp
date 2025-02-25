@@ -16,3 +16,6 @@ jobs:
         uses: threeal/cmake-action@v2.1.0
         with:
           build-args: -j
+    
+      - name: Run Tests
+        run: ./build/khnormal
