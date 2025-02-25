@@ -14,3 +14,5 @@ jobs:
 
       - name: Build Project
         uses: threeal/cmake-action@v2.1.0
+        with:
+          build-args: -j
