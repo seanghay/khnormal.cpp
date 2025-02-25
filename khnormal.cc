@@ -11,11 +11,6 @@
 #include <string_view>
 #include <vector>
 
-#define CAT_OTHER 0u
-#define CAT_BASE 1u
-#define CAT_COENG 3u
-#define CAT_ZFCOENG 4u
-
 namespace khnormal {
 
 typedef struct {
@@ -24,31 +19,36 @@ typedef struct {
   std::string text;
 } GraphemeItem;
 
-static const uint8_t CATS[] = {
+constexpr uint8_t CAT_OTHER = 0u;
+constexpr uint8_t CAT_BASE = 1u;
+constexpr uint8_t CAT_COENG = 3u;
+constexpr uint8_t CAT_ZFCOENG = 4u;
+
+const uint8_t CATS[] = {
     1, 1,  1,  1,  1,  1,  1, 1,  1, 1, 1, 1, 1, 1,  1,  1,  1,  1, 1,
     1, 1,  1,  1,  1,  1,  1, 1,  1, 1, 1, 1, 1, 1,  1,  1,  0,  0, 1,
     1, 1,  1,  1,  1,  1,  1, 1,  1, 1, 1, 1, 1, 1,  0,  0,  10, 9, 9,
     9, 9,  8,  8,  8,  7,  7, 7,  7, 7, 7, 7, 7, 11, 12, 12, 5,  5, 11,
     2, 11, 11, 11, 11, 11, 3, 11, 0, 0, 0, 0, 0, 0,  0,  0,  0,  11};
 
-static const re2::RE2 PATTERN_COENG_DA_TA("(\\x{17D2})\\x{178A}");
-static const re2::RE2
+const re2::RE2 PATTERN_COENG_DA_TA("(\\x{17D2})\\x{178A}");
+const re2::RE2
     PATTERN_COMPOUND_VOWEL1("\\x{17C1}([\\x{17BB}-\\x{17BD}]?)\\x{17B8}");
-static const re2::RE2
+const re2::RE2
     PATTERN_COMPOUND_VOWEL2("\\x{17C1}([\\x{17BB}-\\x{17BD}]?)\\x{17B6}");
-static const re2::RE2 PATTERN_COMPOUND_VOWEL3("(\\x{17BE})(\\x{17BB})");
+const re2::RE2 PATTERN_COMPOUND_VOWEL3("(\\x{17BE})(\\x{17BB})");
 
-static const re2::RE2
+const re2::RE2
     PATTERN_INVISIBLE_CHARS("([\\x{200C}\\x{200D}]\\x{17D2}?|\\x{17D2}\\x{200D}"
                             ")[\\x{17D2}\\x{200C}\\x{200D}]+");
 
-static const re2::RE2 PATTERN_COENG_RO_SECOND(
+const re2::RE2 PATTERN_COENG_RO_SECOND(
     "(\\x{17D2}\\x{179A})(\\x{17D2}[\\x{1780}-\\x{17B3}])");
 
-static const re2::RE2
+const re2::RE2
     PATTERN_KHMER("([\\x{1780}-\\x{17ff}]+)|([^\\x{1780}-\\x{17ff}]+)");
 
-static const re2::RE2 PATTERN_S2(
+const re2::RE2 PATTERN_S2(
     "((?:[\\x{1784}\\x{1780}\\x{178E}\\x{1793}\\x{1794}\\x{1798}-\\x{179D}"
     "\\x{17A1}\\x{17A3}-\\x{17B3}]\\x{17CC}?(?:\\x{17D2}[\\x{1784}\\x{1780}"
     "\\x{178E}\\x{1793}\\x{1794}\\x{1798}-\\x{179D}\\x{17A1}\\x{17A3}-\\x{"
@@ -64,7 +64,7 @@ static const re2::RE2 PATTERN_S2(
     "[\\x{17B7}-\\x{17BA}\\x{17BE}\\x{17BF}\\x{17DD}]|\\x{17B6}\\x{17C6}|"
     "\\x{17D0})");
 
-static const re2::RE2 PATTERN_S1(
+const re2::RE2 PATTERN_S1(
     "([\\x{1780}-\\x{1783}\\x{1785}-\\x{1788}\\x{178A}-\\x{178D}\\x{178F}-"
     "\\x{1792}\\x{1795}-\\x{1797}\\x{179E}-\\x{17A0}\\x{17A2}]\\x{17CC}?(?:"
     "\\x{17D2}[\\x{1780}-\\x{1793}\\x{1795}-\\x{17A2}\\x{17A5}-\\x{17B3}](?"
