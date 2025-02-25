@@ -76,13 +76,10 @@ static const re2::RE2 PATTERN_S1(
     "17BA}\\x{17BE}\\x{17BF}\\x{17DD}]|\\x{17B6}\\x{17C6}|\\x{17D0})");
 
 std::string khnormal(std::string_view v) {
-  std::string result(v);
-
-  auto it = result.begin();
-  auto end = result.end();
-
   std::vector<GraphemeItem> values;
 
+  auto it = v.begin();
+  auto end = v.end();
   int i = 0;
   while (it != end) {
     utf8::utfchar32_t c = utf8::next(it, end);
@@ -158,12 +155,11 @@ std::string khnormal(std::string_view v) {
 }
 
 std::string normalize(std::string_view text) {
-  re2::StringPiece input(text);
   std::string result = "";
   std::string m1;
   std::string m2;
 
-  while (re2::RE2::FindAndConsume(&input, PATTERN_KHMER, &m1, &m2)) {
+  while (re2::RE2::FindAndConsume(&text, PATTERN_KHMER, &m1, &m2)) {
     if (!m1.empty()) {
       result.append(khnormal(m1));
       continue;
