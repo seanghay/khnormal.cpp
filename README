@@ -6,7 +6,7 @@ Test cases are from [https://github.com/sillsdev/khmer-normalizer]
 
 Build:
 
-  git clone --recurisve https://github.com/seanghay/khnormal.cpp.git
+  git clone --recursive https://github.com/seanghay/khnormal.cpp.git
   
   mkdir build/
   cd build/
