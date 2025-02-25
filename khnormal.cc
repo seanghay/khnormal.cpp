@@ -103,7 +103,7 @@ std::string khnormalize(std::string_view v) {
       t = CAT_COENG;
     }
 
-    values.push_back(GraphemeItem{.code = c, .type = t, .text = text});
+    values.push_back(GraphemeItem{t, c, text});
     i++;
   }
 
